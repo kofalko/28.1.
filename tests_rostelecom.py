@@ -1,5 +1,10 @@
-import pytest
-
+from time import sleep
+import pytest 
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from base_data import AuthForm, CodeForm
 from pages.auth_page import AuthPage
 from pages.registration_page import RegPage
 
