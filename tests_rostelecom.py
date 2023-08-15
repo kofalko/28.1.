@@ -3,7 +3,7 @@ import pytest
 from pages.auth_page import AuthPage
 from pages.registration_page import RegPage
 
-# Тест-кейс EXP-001
+# ТEXP-001
 # Корректное отображение "Стандартной страницы авторизации"
 def test_start_page_is_correct(web_browser):
     page = AuthPage(web_browser)
@@ -16,7 +16,7 @@ def test_start_page_is_correct(web_browser):
     assert page.auth_title.get_text() == "Авторизация"
     assert page.logo_lk.get_text() == "Личный кабинет"
 
-# Тест-кейс EXP-002 (Bugs-BR-001)
+# EXP-002 (Bugs-BR-001)
 # Проверка элементов в левом и правом блоке страницы
 @pytest.mark.xfail(reason="Расположение элементов на странице не соответсвует ТЗ")
 def test_location_of_page_blocks(web_browser):
@@ -24,14 +24,14 @@ def test_location_of_page_blocks(web_browser):
     assert page.auth_form.find(timeout=1)
     assert page.lk_form.find(timeout=1)
 
-# Тест-кейс EXP-003(Bugs-BR-002)
+# EXP-003(Bugs-BR-002)
 # Проверка названия вкладки "Номер"
 @pytest.mark.xfail(reason="Название вкладки 'Номер' не соответствует ТЗ")
 def test_phone_tab(web_browser):
     page = AuthPage(web_browser)
     assert page.phone_tab.get_text() == "Номер"
 
-# Тест-кейс EXP-004(Bugs-BR-003)
+# EXP-004(Bugs-BR-003)
 # Проверка названия кнопки "Продолжить" в форме "Регистрация"
 @pytest.mark.xfail(reason="Кнопка должна иметь текст 'Продолжить'")
 def test_registration_page_and_continue_button(web_browser):
@@ -46,7 +46,7 @@ def test_registration_page_and_continue_button(web_browser):
     assert reg_page.password_confirmation_field_text.get_text() == "Подтверждение пароля"
     assert reg_page.continue_button.get_text() == "Продолжить"
 
-# Тест-кейс EXP-005
+# EXP-005
 # Регистрация пользователя с пустым полем "Имя", появления текста с подсказкой об ошибке
 def test_registration_page_with_empty_name_field(web_browser):
     auth_page = AuthPage(web_browser)
@@ -61,7 +61,7 @@ def test_registration_page_with_empty_name_field(web_browser):
     reg_page.error_message_name.is_visible()
     assert reg_page.error_message_name.get_text() == "Необходимо заполнить поле кириллицей. От 2 до 30 символов."
 
-# Тест-кейс EXP-006
+# EXP-006
 # Регистрация пользователя со значением в поле "Имя" меньше 2 символов, появление текста с подсказкой об ошибке
 def test_registration_with_an_incorrect_value_in_the_name_field(web_browser):
     auth_page = AuthPage(web_browser)
@@ -76,7 +76,7 @@ def test_registration_with_an_incorrect_value_in_the_name_field(web_browser):
     reg_page.error_message_name.is_visible()
     assert reg_page.error_message_name.get_text() == "Необходимо заполнить поле кириллицей. От 2 до 30 символов."
 
-# Тест-кейс EXP-007
+# EXP-007
 # Регистрация пользователя с некорректным значением в поле «Фамилия» (более 30-ти символов), появление текста с ошибкой.
 def test_registration_with_an_incorrect_value_in_the_last_name_field(web_browser):
     auth_page = AuthPage(web_browser)
@@ -91,7 +91,7 @@ def test_registration_with_an_incorrect_value_in_the_last_name_field(web_browser
     reg_page.error_message_name.is_visible()
     assert reg_page.error_message_last_name.get_text() == "Необходимо заполнить поле кириллицей. От 2 до 30 символов."
 
-# Тест-кейс EXP-008
+# EXP-008
 # Регистрация пользователя с уже зарегистрированным номером, появление оповещения
 def test_registration_of_an_already_registered_user(web_browser):
     auth_page = AuthPage(web_browser)
@@ -105,7 +105,7 @@ def test_registration_of_an_already_registered_user(web_browser):
     reg_page.continue_button.click()
     assert reg_page.notification_form.is_visible
 
-# Тест-кейс EXP-009(Bugs-BR-004)
+# EXP-009(Bugs-BR-004)
 # Проверка кнопки "х" - закрыть всплывающее окно оповещения
 @pytest.mark.xfail(reason="Должен быть значок закрыть 'х'")
 def test_notification_form(web_browser):
@@ -122,7 +122,7 @@ def test_notification_form(web_browser):
     assert reg_page.recover_password_button.get_text() == 'Восстановить пароль'
     assert reg_page.close_button.get_text() == 'x'
 
-# Тест-кейс EXP-010
+# EXP-010
 #  При регистрации пользователя введен пароль содержащий менее 8 символов, появление текста с подсказкой об ошибке
 def test_incorrect_password_during_registration(web_browser):
     auth_page = AuthPage(web_browser)
@@ -136,7 +136,7 @@ def test_incorrect_password_during_registration(web_browser):
     reg_page.continue_button.click()
     assert reg_page.error_message_password.get_text() == "Длина пароля должна быть не менее 8 символов"
 
-# Тест-кейс EXP-011
+# EXP-011
 # При регистрация пользователя в поле "Фамилия" введено значение, содержащее недопустимые символы вместо кириллицы
 def test_instead_of_cyrillic_invalid_characters(web_browser):
     auth_page = AuthPage(web_browser)
@@ -150,7 +150,7 @@ def test_instead_of_cyrillic_invalid_characters(web_browser):
     reg_page.continue_button.click()
     assert reg_page.message_must_be_filled_in_cyrillic.get_text() == "Необходимо заполнить поле кириллицей. От 2 до 30 символов."
 
-# Тест-кейс EXP-012
+# EXP-012
 # Значения в поле ввода "Пароль" и поле ввода "Подтверждение пароля" в форме "Регистрация" не совпадают
 def test_password_and_password_confirmation_do_not_match(web_browser):
     auth_page = AuthPage(web_browser)
@@ -164,7 +164,7 @@ def test_password_and_password_confirmation_do_not_match(web_browser):
     reg_page.continue_button.click()
     assert reg_page.message_passwords_dont_match.get_text() == "Пароли не совпадают"
 
-# Тест-кейс EXP-013
+#  EXP-013
 # Не валидный email в поле ввода "Email или мобильный телефон" в форме регистрация
 def test_invalid_email_or_mobile_phone(web_browser):
     auth_page = AuthPage(web_browser)
@@ -179,7 +179,7 @@ def test_invalid_email_or_mobile_phone(web_browser):
     assert reg_page.message_enter_the_phone_in_the_format.get_text() == "Введите телефон в формате +7ХХХХХХХХХХ или" \
                                                                         " +375XXXXXXXXX, или email в формате example@email.ru"
 
-# Тест-кейс EXP-014
+#  EXP-014
 # Вход по неправильному паролю в форме "Авторизация" уже зарегистрированного пользователя, надпись "Забыл пароль"
 # перекрашивается в оранжевый цвет
 def test_authorization_of_a_user_with_an_invalid_password(web_browser):
@@ -199,5 +199,73 @@ def test_authorisation_valid(web_browser):
     page.password.send_keys("Qwerty12")
     page.btn_login.click()
 
+# EXP-016 
+# проверяем доступность пользовательского соглашения
+def test_check_user_agreement(selenium):
+    form = AuthForm(selenium)
+
+    original_window = form.driver.current_window_handle
+    # нажимаем на кнопку "Пользовательским соглашением" в подвале страницы
+    form.agree.click()
+    sleep(5)
+    WebDriverWait(form.driver, 5).until(EC.number_of_windows_to_be(2))
+    for window_handle in form.driver.window_handles:
+        if window_handle != original_window:
+            form.driver.switch_to.window(window_handle)
+            break
+    title_page = form.driver.execute_script("return window.document.title")
+
+    assert title_page == 'User agreement'
+
+
+# EXP-017 
+# проверяем возможность авторизации через социальную сеть Вконтакте
+def test_check_auth_vk(selenium):
+    form = AuthForm(selenium)
+    form.vk_btn.click()
+    sleep(5)
+
+    assert form.get_base_url() == 'oauth.vk.com'
+
+
+# EXP-018 
+# проверяем возможность авторизации через социальную сеть Одноклассники
+def test_check_auth_ok(selenium):
+    form = AuthForm(selenium)
+    form.ok_btn.click()
+    sleep(5)
+
+    assert form.get_base_url() == 'connect.ok.ru'
+
+# EXP-019 
+# проверяем возможность авторизации через портал mail.ru)
+def test_check_auth_mail_ru(selenium):
+    form = AuthForm(selenium)
+    form.mail_ru_btn.click()
+    sleep(5)
+
+    assert form.get_base_url() == 'connect.mail.ru'
+
+
+# EXP-020 
+# проверяем возможность авторизации через Google аккаунт)
+def test_check_auth_google_acc(selenium):
+    form = AuthForm(selenium)
+    form.google_btn.click()
+    sleep(5)
+
+    assert form.get_base_url() == 'accounts.google.com'
+
+
+# EXP-021 
+# проверяем возможность авторизации через паспорт yandex.ru)
+@pytest.mark.xfail(reason='Кнопка авторизации через яндекс не отрабатывает с первого раза')
+def test_check_auth_yandex(selenium):
+    form = AuthForm(selenium)
+    form.yandex_btn.click()
+    sleep(3)
+
+    assert form.get_base_url() == 'passport.yandex.ru'
+    
     assert 'https://b2c.passport.rt.ru/account_b2c/page?state=' in page.get_current_url() \
            and '&client_id=account_b2c#/' in page.get_current_url()
