@@ -236,7 +236,7 @@ def test_check_auth_ok(selenium):
     assert form.get_base_url() == 'connect.ok.ru'
 
 # EXP-019 
-# проверяем возможность авторизации через портал mail.ru)
+# проверяем возможность авторизации через портал mail.ru
 def test_check_auth_mail_ru(selenium):
     form = AuthForm(selenium)
     form.mail_ru_btn.click()
@@ -254,7 +254,7 @@ def test_check_auth_google_acc(selenium):
     assert form.get_base_url() == 'accounts.google.com'
 
 # EXP-021 
-# проверяем возможность авторизации через паспорт yandex.ru)
+# проверяем возможность авторизации через паспорт yandex.ru
 @pytest.mark.xfail(reason='Кнопка авторизации через яндекс не отрабатывает с первого раза')
 def test_check_auth_yandex(selenium):
     form = AuthForm(selenium)
