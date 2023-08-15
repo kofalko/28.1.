@@ -217,7 +217,6 @@ def test_check_user_agreement(selenium):
 
     assert title_page == 'User agreement'
 
-
 # EXP-017 
 # проверяем возможность авторизации через социальную сеть Вконтакте
 def test_check_auth_vk(selenium):
@@ -226,7 +225,6 @@ def test_check_auth_vk(selenium):
     sleep(5)
 
     assert form.get_base_url() == 'oauth.vk.com'
-
 
 # EXP-018 
 # проверяем возможность авторизации через социальную сеть Одноклассники
@@ -246,16 +244,14 @@ def test_check_auth_mail_ru(selenium):
 
     assert form.get_base_url() == 'connect.mail.ru'
 
-
 # EXP-020 
-# проверяем возможность авторизации через Google аккаунт)
+# проверяем возможность авторизации через Google аккаунт
 def test_check_auth_google_acc(selenium):
     form = AuthForm(selenium)
     form.google_btn.click()
     sleep(5)
 
     assert form.get_base_url() == 'accounts.google.com'
-
 
 # EXP-021 
 # проверяем возможность авторизации через паспорт yandex.ru)
